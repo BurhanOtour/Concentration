@@ -45,16 +45,21 @@ class Concentration
    
     init(numberOfPairsOfCards: Int)
     {
+        print("Is it called?")
         // Loops in Swift iterates sequences or "countable range"
         // 0..<10 means from 0 to 9
         // 0...10 means from 0 to 10
+        var tmpCards = [Card]()
+        // Create the cards
         for _ in 0..<numberOfPairsOfCards {
             let card = Card()
-            cards += [card, card]
-            /**
-                            cards.append(card) could also be used
-             */
+            tmpCards += [card, card]
         }
-        // TODO: Shuffle the cards (homework)
+        // Shuffel the cards
+        for _ in 0..<numberOfPairsOfCards*2 {
+            let randomIndex = Int(arc4random_uniform(UInt32(tmpCards.count)))
+            print("Card At \(randomIndex)")
+            cards.append(tmpCards.remove(at: randomIndex))
+        }
     }
 }
